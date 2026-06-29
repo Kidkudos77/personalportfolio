@@ -534,6 +534,7 @@ function openProject(i){
   document.getElementById('modal').classList.add('open');
 }
 
+
 /* ============================================================
    RESUME  (in-bubble preview / upload / view / download)
    ============================================================ */
@@ -553,15 +554,17 @@ function renderResumePreview(){
       wrap.appendChild(f);
     }
     
-    // Construct absolute URL for Google Docs Viewer
+    // 1. Force the exact absolute URL based on your GitHub Pages domain
     let pdfUrl = resumeURL;
     if (!pdfUrl.startsWith('http')) {
-      const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-      pdfUrl = baseUrl + pdfUrl;
+      pdfUrl = 'https://kidkudos77.github.io/personalportfolio/' + pdfUrl;
     }
     
-    // Bypass GitHub Pages iframe block using Google Docs viewer
-    f.src = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+    // 2. Add a cache-buster to prevent Google from serving a cached 404
+    const cacheBuster = new Date().getTime();
+    
+    // 3. Render via Google Docs
+    f.src = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl + '?v=' + cacheBuster)}&embedded=true`;
     
   } else if(empty){
     empty.style.display = 'flex';
@@ -571,16 +574,17 @@ function renderResumePreview(){
 function openResume(){
   if(!resumeURL){alert('No resume loaded yet. Upload a PDF or set DEFAULT_RESUME in the code.');return;}
   
-  // Construct absolute URL for Google Docs Viewer
+  // Force absolute URL
   let pdfUrl = resumeURL;
   if (!pdfUrl.startsWith('http')) {
-    const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    pdfUrl = baseUrl + pdfUrl;
+    pdfUrl = 'https://kidkudos77.github.io/personalportfolio/' + pdfUrl;
   }
+  
+  // Cache-buster for the modal view
+  const cacheBuster = new Date().getTime();
 
-  // Bypass GitHub Pages iframe block using Google Docs viewer in the modal
   document.getElementById('modalVid').innerHTML =
-    `<iframe class="pdf" src="https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true" title="Resume"></iframe>`;
+    `<iframe class="pdf" src="https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl + '?v=' + cacheBuster)}&embedded=true" title="Resume"></iframe>`;
     
   document.getElementById('modalBody').innerHTML =
     `<h3>Résumé</h3><p class="desc">Viewing in-page. Use the button to download a copy.</p>
@@ -592,7 +596,10 @@ function openResume(){
 
 function downloadResume(){
   if(!resumeURL){alert('No resume loaded yet. Upload a PDF or set DEFAULT_RESUME in the code.');return;}
-  const a=document.createElement('a');a.href=resumeURL;a.download='Javonte_Carter_Resume.pdf';a.click();
+  const a = document.createElement('a');
+  a.href = resumeURL;
+  a.download = 'Javonte_Carter_Resume.pdf';
+  a.click();
 }
 renderResumePreview();
 function closeModal(){document.getElementById('modal').classList.remove('open');document.getElementById('modalVid').innerHTML='';}
