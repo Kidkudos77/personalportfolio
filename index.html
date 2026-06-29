@@ -540,27 +540,56 @@ function openProject(i){
 let resumeURL = DEFAULT_RESUME;
 
 function renderResumePreview(){
-  const wrap=document.getElementById('resumePreview');
-  const empty=document.getElementById('resumeEmpty');
+  const wrap = document.getElementById('resumePreview');
+  const empty = document.getElementById('resumeEmpty');
+  
   if(resumeURL){
-    empty.style.display='none';
-    let f=wrap.querySelector('iframe.inline');
-    if(!f){f=document.createElement('iframe');f.className='inline';f.title='Résumé preview';wrap.appendChild(f);}
-    f.src=resumeURL+'#toolbar=0&view=FitH';
-  }else if(empty){
-    empty.style.display='flex';
+    empty.style.display = 'none';
+    let f = wrap.querySelector('iframe.inline');
+    if(!f){
+      f = document.createElement('iframe');
+      f.className = 'inline';
+      f.title = 'Résumé preview';
+      wrap.appendChild(f);
+    }
+    
+    // Construct absolute URL for Google Docs Viewer
+    let pdfUrl = resumeURL;
+    if (!pdfUrl.startsWith('http')) {
+      const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+      pdfUrl = baseUrl + pdfUrl;
+    }
+    
+    // Bypass GitHub Pages iframe block using Google Docs viewer
+    f.src = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+    
+  } else if(empty){
+    empty.style.display = 'flex';
   }
 }
+
 function openResume(){
   if(!resumeURL){alert('No resume loaded yet. Upload a PDF or set DEFAULT_RESUME in the code.');return;}
-  document.getElementById('modalVid').innerHTML=
-    `<iframe class="pdf" src="${resumeURL}#toolbar=1" title="Resume"></iframe>`;
-  document.getElementById('modalBody').innerHTML=
+  
+  // Construct absolute URL for Google Docs Viewer
+  let pdfUrl = resumeURL;
+  if (!pdfUrl.startsWith('http')) {
+    const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    pdfUrl = baseUrl + pdfUrl;
+  }
+
+  // Bypass GitHub Pages iframe block using Google Docs viewer in the modal
+  document.getElementById('modalVid').innerHTML =
+    `<iframe class="pdf" src="https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true" title="Resume"></iframe>`;
+    
+  document.getElementById('modalBody').innerHTML =
     `<h3>Résumé</h3><p class="desc">Viewing in-page. Use the button to download a copy.</p>
      <div class="foot"><a class="btn btn-primary" href="${resumeURL}" download="Javonte_Carter_Resume.pdf">Download PDF</a></div>`;
-  document.getElementById('modalCard').style.maxWidth='820px';
+     
+  document.getElementById('modalCard').style.maxWidth = '820px';
   document.getElementById('modal').classList.add('open');
 }
+
 function downloadResume(){
   if(!resumeURL){alert('No resume loaded yet. Upload a PDF or set DEFAULT_RESUME in the code.');return;}
   const a=document.createElement('a');a.href=resumeURL;a.download='Javonte_Carter_Resume.pdf';a.click();
