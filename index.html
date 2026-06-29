@@ -602,18 +602,17 @@ async function sendChat(){
   const typing=addMsg('thinking…','bot typing');
   try{
     // Build Gemini contents array: inject system prompt as first user turn
-    const contents=[
-      {role:"user",parts:[{text:SYSTEM_PROMPT}]},
-      {role:"model",parts:[{text:"Understood. I am ready to answer questions about Javonte."}]},
-      ...chatHistory.map(m=>({
-        role: m.role==='assistant' ? 'model' : 'user',
-        parts:[{text:m.content}]
-      }))
-    ];
+    const contents=chatHistory.map(m=>({
+      role: m.role==='assistant' ? 'model' : 'user',
+      parts:[{text:m.content}]
+    }));
     const res=await fetch(PROXY_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents})
+      body:JSON.stringify({
+        systemInstruction:{parts:[{text:SYSTEM_PROMPT}]},
+        contents
+      })
     });
     const data=await res.json();
     const reply=data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
