@@ -380,7 +380,7 @@ section{position:relative}
         <!-- ▸ REPLACE this placeholder with your own words -->
         <p>I'm a first-generation M.S. Computer Science candidate at <em>Florida A&amp;M University</em>, building at the intersection of artificial intelligence, decentralized systems, and high-performance computing.</p>
         <p>My work spans <em>RAG pipelines</em>, blockchain-based credentialing, and HPC cluster research — driven by a mission to open doors in STEM for students who look like me. I'm pursuing a career as an AI Engineer and, eventually, a Ph.D.</p>
-        <p style="color:var(--ink-mute);font-size:.85rem;font-family:'JetBrains Mono'">// edit this section with your own statement</p>
+       /*<p style="color:var(--ink-mute);font-size:.85rem;font-family:'JetBrains Mono'">// edit this section with your own statement</p>*/
       </div>
     </div>
   </section>
@@ -448,30 +448,100 @@ const PROXY_URL      = "https://frosty-art-d9ce.javonte1-carter.workers.dev";
    youtube: the 11-char video ID (from youtu.be/XXXXXXXXXXX) */
 const PROJECTS = [
   {
-    title:"BlockCert",
+    title:"CertChain",
     blurb:"Decentralized micro-credentialing framework using smart contracts, distributed ledger tech, and decentralized identifiers (DIDs).",
     desc:"My M.S. thesis. BlockCert issues and verifies tamper-proof micro-credentials on-chain, giving learners portable, self-owned proof of skills. Built with Solidity smart contracts and Hyperledger Fabric, with DIDs anchoring identity without a central authority.",
     tags:["Solidity","Hyperledger Fabric","DIDs","Smart Contracts"],
-    youtube:"", repo:"blockcert"
+    youtube:"", repo:"https://github.com/Kidkudos77/CertChain.git"
   },
   {
     title:"Local RAG Document Expert",
     blurb:"Full-stack Retrieval-Augmented Generation app that turns your documents into a chat-able research assistant.",
     desc:"A six-tab, 19+ feature RAG application: streaming chat over your own docs, multimodal image analysis, automated literature reviews, and a paper-relationship map. Runs locally on open models. Deployed to Streamlit Community Cloud.",
     tags:["LangChain","ChromaDB","Groq","Streamlit","HuggingFace"],
-    youtube:"", repo:"local-rag-expert"
+    youtube:"", repo:"https://github.com/Kidkudos77/local-rag-expert.git"
   },
   {
-    title:"HIV Trials Explorer",
-    blurb:"Interactive React dashboard visualizing HIV cure & reservoir clinical-trial data.",
-    desc:"Built from an 80-study ClinicalTrials.gov export, this dashboard lets users filter, compare, and explore HIV cure and reservoir research. Focus on making dense clinical data legible and explorable for non-experts.",
-    tags:["React","Data Viz","D3","ClinicalTrials.gov"],
-    youtube:"", repo:"hiv-trials-explorer"
+    title:"NLP-Sentiment-Analysis",
+    blurb:"This project builds an LSTM-based sentiment analysis model trained on 1.6 million Twitter reviews to classify customer feedback as positive or negative, with a client interface for real-time predictions.",
+    desc:"This project implements an LSTM neural network for sentiment analysis that classifies customer reviews as positive or negative using NLP techniques, trained on a dataset of 1.6 million Twitter reviews with a real-time prediction interface.",
+    tags:["NLP","LSTM","Deep learning","TensorFlow/Keras"],
+    youtube:"", repo:"https://github.com/CAP5626-SP26/nlp-sentiment-analysis-Kidkudos77.git"
   },
   {
     title:"HPC Cluster Research",
-    blurb:"Python & API development on TACC's Frontera supercomputer — visualization and HPC tooling.",
-    desc:"Research-grade development on TACC's Frontera / SGX3 cluster: a CertChain network visualization with NetworkX, API integration work, and containerized workflows with Apptainer. Hands-on high-performance computing at national-lab scale.",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+  {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+  {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+       {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+  {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+       {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+  {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+       {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+  {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+       {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
+    tags:["Python","HPC","NetworkX","Apptainer","Linux"],
+    youtube:"", repo:""
+  }
+  {
+    title:"TBD",
+    blurb:"TBD",
+    desc:"Stay tune",
     tags:["Python","HPC","NetworkX","Apptainer","Linux"],
     youtube:"", repo:""
   }
@@ -616,10 +686,8 @@ Facts about Javonte:
 - Goal: become an AI Engineer and pursue a Ph.D. in AI; passionate about creating impact for underrepresented students in STEM.
 - Skills: Python, C++, Java, C#, React, Kotlin, SQL, Hyperledger Fabric, Ethereum/Solidity, Linux, Apptainer.
 - Projects:
-  • BlockCert (M.S. thesis): decentralized micro-credentialing with smart contracts, DLT, and DIDs.
+  • CertChain (M.S. thesis): decentralized micro-credentialing with smart contracts, DLT, and DIDs.
   • Local RAG Document Expert: full-stack RAG app (LangChain, ChromaDB, Groq, Streamlit) with 19+ features.
-  • HIV Trials Explorer: React dashboard visualizing HIV clinical-trial data.
-  • HPC research on TACC's Frontera supercomputer (Python, NetworkX, Apptainer).
 If asked something you don't know, say you're not sure and point them to the projects or his GitHub (github.com/Kidkudos77). Keep replies under 90 words.`;
 
 let chatHistory=[];
